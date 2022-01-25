@@ -1,0 +1,225 @@
+import "./style.css";
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import * as Pageable from "pageable";
+// import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+
+// import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+// import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+
+import { DotScreenPass } from "three/examples/jsm/postprocessing/DotScreenPass.js";
+new Pageable("#container");
+
+/**
+ * Base
+ */
+
+// Canvas
+const canvas = document.querySelector("canvas.webgl");
+const canvas1 = document.querySelector("canvas.webgl1");
+
+// Scene
+const scene = new THREE.Scene();
+const scene1 = new THREE.Scene();
+const cursor = {};
+cursor.x = 0;
+cursor.y = 0;
+const rotations = {};
+rotations.x = 0;
+rotations.y = 0;
+/**
+ * Models
+ */
+// const axesHelper = new THREE.AxesHelper(10);
+// scene.add(axesHelper);
+const textureLoader = new THREE.TextureLoader();
+const moonTexture = textureLoader.load("moon.jpg");
+const starTexture = textureLoader.load("star.png");
+const cloudsTexture = textureLoader.load("cloud.png");
+const moonGeometry = new THREE.SphereGeometry(1.6, 50, 50);
+const moonMaterial = new THREE.MeshBasicMaterial({
+  map: moonTexture,
+});
+const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
+moonMesh.rotation.y = -Math.PI * 0.5;
+moonMesh.rotation.x = Math.PI * 0.15;
+rotations.x = moonMesh.rotation.x;
+rotations.y = moonMesh.rotation.y;
+moonMesh.position.y = 2;
+
+scene.add(moonMesh);
+const cloudPlane = new THREE.PlaneGeometry(5, 3, 3, 3);
+const cloudMaterial = new THREE.MeshBasicMaterial({
+  map: cloudsTexture,
+  transparent: true,
+});
+const cloudMesh = new THREE.Mesh(cloudPlane, cloudMaterial);
+const cloudMesh1 = new THREE.Mesh(cloudPlane, cloudMaterial);
+cloudMesh1.position.y = -0.5;
+cloudMesh.position.y = -0.5;
+cloudMesh.position.z = 1.5;
+cloudMesh1.position.z = 2;
+cloudMesh.position.x = 2;
+cloudMesh1.position.x = -2;
+scene.add(cloudMesh);
+scene.add(cloudMesh1);
+
+// Geometry
+const particlesGeometry = new THREE.BufferGeometry();
+const count = 1000;
+
+const positions = new Float32Array(count * 3); // Multiply by 3 because each position is composed of 3 values (x, y, z)
+
+for (
+  let i = 0;
+  i < count * 3;
+  i++ // Multiply by 3 for same reason
+) {
+  positions[i] = (Math.random() - 0.5) * 10; // Math.random() - 0.5 to have a random value between -0.5 and +0.5
+}
+
+particlesGeometry.setAttribute(
+  "position",
+  new THREE.BufferAttribute(positions, 3)
+);
+const particlesMaterial = new THREE.PointsMaterial({
+  map: starTexture,
+  transparent: true,
+});
+particlesMaterial.size = 0.03;
+particlesMaterial.sizeAttenuation = true;
+const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+scene1.add(particles);
+/**
+ * Lights
+ */
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+directionalLight.position.set(-5, 5, 0);
+scene.add(directionalLight);
+
+/**
+ * Sizes
+ */
+const sizes = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+};
+window.addEventListener("mousemove", (event) => {
+  moonMesh.rotation.x = rotations.x;
+  moonMesh.rotation.y = rotations.y;
+  cursor.x = event.clientX / sizes.width - 0.5;
+  cursor.y = event.clientY / sizes.height - 0.5;
+});
+
+window.addEventListener("resize", () => {
+  // Update sizes
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+
+  // Update camera
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
+
+  // Update renderer
+  renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer1.setSize(sizes.width, sizes.height);
+  renderer1.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  //   effectComposer.setSize(sizes.width, sizes.height);
+  //   effectComposer1.setSize(sizes.width, sizes.height);
+});
+
+/**
+ * Camera
+ */
+// Base camera
+const camera = new THREE.PerspectiveCamera(
+  75,
+  sizes.width / sizes.height,
+  0.1,
+  100
+);
+camera.position.set(0, 0, 4);
+scene.add(camera);
+scene1.add(camera);
+// Controls
+const controls = new OrbitControls(camera, canvas);
+controls.target.set(0, 0.75, 0);
+controls.enableDamping = true;
+
+/**
+ * Renderer
+ */
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas,
+  alpha: true,
+  antialias: true,
+});
+const renderer1 = new THREE.WebGLRenderer({
+  canvas: canvas1,
+  alpha: true,
+});
+
+// renderer.shadowMap.enabled = true;
+// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer1.setSize(sizes.width, sizes.height);
+renderer1.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// const effectComposer = new EffectComposer(renderer);
+// effectComposer.setSize(sizes.width, sizes.height);
+// effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// const effectComposer1 = new EffectComposer(renderer1);
+// effectComposer1.setSize(sizes.width, sizes.height);
+// effectComposer1.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// const renderPass = new RenderPass(scene, camera);
+
+// effectComposer.addPass(renderPass);
+// const renderPass1 = new RenderPass(scene1, camera);
+
+// effectComposer1.addPass(renderPass1);
+
+// const unrealBloomPass = new UnrealBloomPass();
+// effectComposer.addPass(unrealBloomPass);
+// effectComposer1.addPass(unrealBloomPass);
+/**
+ * Animate
+ */
+const clock = new THREE.Clock();
+let previousTime = 0;
+
+const tick = () => {
+  const parallaxX = cursor.x;
+  const parallaxY = cursor.y;
+  const elapsedTime = clock.getElapsedTime();
+  const deltaTime = elapsedTime - previousTime;
+  previousTime = elapsedTime;
+  particles.position.y = parallaxX * 0.1;
+  particles.position.x = parallaxY * 0.1;
+
+  moonMesh.rotation.x = rotations.x + parallaxY * 0.3;
+  moonMesh.rotation.y = rotations.y + parallaxX * 0.3;
+
+  // Model animation
+
+  // Update controls
+  controls.update();
+
+  //prevent canvas from being erased with next .render call
+
+  //just render scene2 on top of scene1
+
+  renderer1.render(scene1, camera);
+
+  renderer.render(scene, camera);
+  //   effectComposer.render();
+  //   effectComposer1.render();
+
+  // Call tick again on the next frame
+  window.requestAnimationFrame(tick);
+};
+
+tick();
