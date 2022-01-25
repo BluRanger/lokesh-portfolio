@@ -5,8 +5,6 @@
 html {
   /* color: whitesmoke;
   background: #ffffff; */
-
-  background: linear-gradient(#1384cf, #693a8a, #c7143b, #f0e9e9);
 }
 body {
   /* height: 200vh; */
@@ -22,6 +20,21 @@ body {
   display: flex;
   align-items: flex-end;
   background: linear-gradient(#21313c, #4f3e5b, #9a485a, #c94a3e);
+}
+.section2 {
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(#21313c, #4f3e5b);
+}
+.section3 {
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(#21313c, #4f3e5b);
+}
+.section4 {
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(#21313c, #4f3e5b);
 }
 section {
   position: relative;
