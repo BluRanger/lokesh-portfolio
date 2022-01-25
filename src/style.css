@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap");
+@font-face {
+  font-family: Naruto;
+  src: url(njnaruto.ttf);
+}
 html {
   /* color: whitesmoke;
   background: #ffffff; */
@@ -24,23 +27,39 @@ section {
   position: relative;
 }
 .layer {
+  width: 100vw;
   position: absolute;
   z-index: 0;
 }
 .layer1 {
+  width: 100vw;
   position: absolute;
   z-index: 1;
 }
 .layer2 {
+  width: 100vw;
   position: absolute;
   z-index: 2;
 }
 .layer3 {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  text-align: left;
   position: absolute;
   z-index: 3;
-  color: #f7f0f0;
-  font-size: 100px;
-  font-family: "Fredericka the Great";
+  color: #f0ece9;
+  font-size: 70px;
+  font-family: "Naruto";
+}
+.lokesh {
+  padding: 100px;
+  width: 50vw;
+}
+.reddy {
+  padding: 100px;
+  text-align: right;
+  width: 50vw;
 }
 .webgl1 {
   z-index: 0;

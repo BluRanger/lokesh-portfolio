@@ -35,7 +35,7 @@ rotations.y = 0;
 const textureLoader = new THREE.TextureLoader();
 const moonTexture = textureLoader.load("moon.jpg");
 const starTexture = textureLoader.load("star.png");
-const cloudsTexture = textureLoader.load("cloud.png");
+const cloudsTexture = textureLoader.load("clouds.png");
 const moonGeometry = new THREE.SphereGeometry(1.6, 50, 50);
 const moonMaterial = new THREE.MeshBasicMaterial({
   map: moonTexture,
