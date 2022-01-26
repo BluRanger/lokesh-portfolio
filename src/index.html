@@ -9,7 +9,7 @@
   <body>
     <div id="container">
       <section class="section1" data-anchor="Page 1">
-        <div class="gyropopup fade">
+        <div id="gyropopup" class="gyropopup fade">
           Request Permission for Gyro
           <button class="button" type="Request" onclick="RequestAccess()">
             Request
@@ -42,8 +42,8 @@
               leftToRight,
               rotateDegrees
             ) {
-              const request = document.getElementsByClassName("gyropopup");
-              request.classList.toggle("fade");
+              var para = document.getElementById("gyropopup");
+              para.classList.toggle("fade");
               //donothing
             };
           </script>

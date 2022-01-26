@@ -20,8 +20,8 @@ if (
 }
 if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
   // true for mobile device
-  const request = document.getElementsByClassName("gyropopup");
-  request.classList.toggle("fade");
+  var para = document.getElementById("gyropopup");
+  para.classList.toggle("fade");
 }
 new Pageable("#container", {
   childSelector: "[data-anchor]", // CSS3 selector string for the pages
