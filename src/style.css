@@ -2,6 +2,18 @@
   font-family: Naruto;
   src: url(njnaruto.ttf);
 }
+@font-face {
+  font-family: Tsushima;
+  src: url(Tsushima.otf);
+}
+@font-face {
+  font-family: Horizon;
+  src: url(Horizon.ttf);
+}
+@font-face {
+  font-family: Shenttpuro;
+  src: url(Shenttpuro.ttf);
+}
 html {
   /* color: whitesmoke;
   background: #ffffff; */
@@ -64,9 +76,12 @@ section {
   vertical-align: middle;
   position: absolute;
   z-index: 3;
-  color: #f0ece9;
-  font-size: 70px;
-  font-family: "Naruto";
+  color: #000000;
+  font-size: 100px;
+  -webkit-text-fill-color: rgba(252, 252, 252, 0.829);
+  font-family: "Shenttpuro";
+  text-decoration: underline;
+  text-decoration-color: red;
 }
 .lokesh {
   position: absolute;
@@ -90,4 +105,10 @@ section {
 }
 .webgl {
   z-index: 1;
+}
+
+@media only screen and (max-width: 400px) {
+  layer3 {
+    font-size: 20px;
+  }
 }
