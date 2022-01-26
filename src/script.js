@@ -8,6 +8,16 @@ import * as Pageable from "pageable";
 // import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 
 import { DotScreenPass } from "three/examples/jsm/postprocessing/DotScreenPass.js";
+
+var ismobile = false;
+if (
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
+) {
+  // true for mobile device
+  ismobile = true;
+}
 new Pageable("#container", {
   childSelector: "[data-anchor]", // CSS3 selector string for the pages
   anchors: [], // define the page anchors
@@ -97,7 +107,12 @@ const moonMaterial = new THREE.MeshBasicMaterial({
 });
 const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
 moonMesh.rotation.y = -Math.PI * 0.5;
-moonMesh.rotation.x = Math.PI * 0.15;
+
+if (ismobile) {
+  moonMesh.rotation.x = Math.PI * 0.06;
+} else {
+  moonMesh.rotation.x = Math.PI * 0.15;
+}
 rotations.x = moonMesh.rotation.x;
 rotations.y = moonMesh.rotation.y;
 moonMesh.position.y = 3.5;
@@ -184,6 +199,34 @@ window.addEventListener("mousemove", (event) => {
   cursor.x = event.clientX / sizes.width - 0.5;
   cursor.y = event.clientY / sizes.height - 0.5;
 });
+if (window.DeviceOrientationEvent) {
+  window.addEventListener(
+    "deviceorientation",
+    function (event) {
+      // alpha: rotation around z-axis
+      var rotateDegrees = event.alpha;
+      // gamma: left to right
+      var leftToRight = event.gamma;
+      // beta: front back motion
+      var frontToBack = event.beta;
+
+      handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+    },
+    true
+  );
+}
+
+var handleOrientationEvent = function (
+  frontToBack,
+  leftToRight,
+  rotateDegrees
+) {
+  cursor.y = frontToBack * 0.03;
+  cursor.x = leftToRight * 0.03;
+  console.log(frontToBack);
+  console.log(leftToRight);
+  console.log(rotateDegrees);
+};
 
 window.addEventListener("resize", () => {
   // Update sizes

@@ -111,7 +111,7 @@ section {
   z-index: 1;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 400px) and (orientation: portrait) {
   layer3 {
     font-size: 20px;
   }
