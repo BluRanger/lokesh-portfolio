@@ -12,10 +12,10 @@ new Pageable("#container", {
   childSelector: "[data-anchor]", // CSS3 selector string for the pages
   anchors: [], // define the page anchors
   pips: true, // display the pips
-  animation: 2000, // the duration in ms of the scroll animation
+  animation: 1000, // the duration in ms of the scroll animation
   delay: 0, // the delay in ms before the scroll animation starts
   throttle: 50, // the interval in ms that the resize callback is fired
-  orientation: "horizontal", // or horizontal or vertical
+  orientation: "vertical", // or horizontal or vertical
   swipeThreshold: 50, // swipe / mouse drag distance (px) before firing the page change event
   freeScroll: true, // allow manual scrolling when dragging instead of automatically moving to next page
   navPrevEl: false, // define an element to use to scroll to the previous page (CSS3 selector string or Element reference)
