@@ -78,10 +78,8 @@ section {
   z-index: 3;
   color: #000000;
   font-size: 100px;
-  -webkit-text-fill-color: rgba(252, 252, 252, 0.829);
+
   font-family: "Shenttpuro";
-  text-decoration: underline;
-  text-decoration-color: red;
 }
 .lokesh {
   position: absolute;
@@ -111,8 +109,33 @@ section {
   z-index: 1;
 }
 .gyropopup {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #000000;
+  border-radius: 10px;
   position: absolute;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  width: 100vw;
+  height: 100px;
+  width: 200px;
+  background: rgb(255, 255, 255);
   z-index: 1000;
+}
+.button {
+  height: 30px;
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+.fade {
+  opacity: 0;
 }
 
 @media only screen and (max-width: 400px) and (orientation: portrait) {

@@ -18,6 +18,11 @@ if (
   // true for mobile device
   ismobile = true;
 }
+if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  // true for mobile device
+  const request = document.querySelector("gyropopup");
+  request.classList.toggle("fade");
+}
 new Pageable("#container", {
   childSelector: "[data-anchor]", // CSS3 selector string for the pages
   anchors: [], // define the page anchors

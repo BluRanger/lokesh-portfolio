@@ -10,10 +10,8 @@
     <div id="container">
       <section class="section1" data-anchor="Page 1">
         <div class="gyropopup fade">
-          Request Permission for Gyro<button
-            type="Request"
-            onclick="RequestAccess()"
-          >
+          Request Permission for Gyro
+          <button class="button" type="Request" onclick="RequestAccess()">
             Request
           </button>
           <script>
@@ -44,6 +42,8 @@
               leftToRight,
               rotateDegrees
             ) {
+              const request = document.querySelector("gyropopup");
+              request.classList.toggle("fade");
               //donothing
             };
           </script>
