@@ -25,6 +25,8 @@
                         "devicemotion",
                         handleOrientationEvent
                       );
+                      var para = document.getElementById("gyropopup");
+                      para.classList.toggle("fade");
                     } else {
                       console.error(
                         "Request to access the orientation was rejected"
@@ -42,8 +44,6 @@
               leftToRight,
               rotateDegrees
             ) {
-              var para = document.getElementById("gyropopup");
-              para.classList.toggle("fade");
               //donothing
             };
           </script>
