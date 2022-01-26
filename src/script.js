@@ -199,6 +199,21 @@ window.addEventListener("mousemove", (event) => {
   cursor.x = event.clientX / sizes.width - 0.5;
   cursor.y = event.clientY / sizes.height - 0.5;
 });
+if (typeof DeviceMotionEvent.requestPermission === "function") {
+  // Handle iOS 13+ devices.
+  DeviceMotionEvent.requestPermission()
+    .then((state) => {
+      if (state === "granted") {
+        window.addEventListener("devicemotion", handleOrientationEvent);
+      } else {
+        console.error("Request to access the orientation was rejected");
+      }
+    })
+    .catch(console.error);
+} else {
+  // Handle regular non iOS 13+ devices.
+  window.addEventListener("devicemotion", handleOrientationEvent);
+}
 if (window.DeviceOrientationEvent) {
   window.addEventListener(
     "deviceorientation",
