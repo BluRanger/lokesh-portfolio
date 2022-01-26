@@ -199,7 +199,7 @@ window.addEventListener("mousemove", (event) => {
   cursor.x = event.clientX / sizes.width - 0.5;
   cursor.y = event.clientY / sizes.height - 0.5;
 });
-if (confirm("request for Gyro !")) {
+function RequestAccess() {
   if (typeof DeviceMotionEvent.requestPermission === "function") {
     // Handle iOS 13+ devices.
     DeviceMotionEvent.requestPermission()
