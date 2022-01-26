@@ -73,6 +73,15 @@ cursor.y = 0;
 const rotations = {};
 rotations.x = 0;
 rotations.y = 0;
+
+const cpositions = {};
+cpositions.x = 0;
+cpositions.y = 0;
+cpositions.z = 0;
+const cpositions1 = {};
+cpositions1.x = 0;
+cpositions1.y = 0;
+cpositions1.z = 0;
 /**
  * Models
  */
@@ -91,7 +100,8 @@ moonMesh.rotation.y = -Math.PI * 0.5;
 moonMesh.rotation.x = Math.PI * 0.15;
 rotations.x = moonMesh.rotation.x;
 rotations.y = moonMesh.rotation.y;
-moonMesh.position.y = 2;
+moonMesh.position.y = 3.5;
+moonMesh.position.z = -5;
 
 scene.add(moonMesh);
 const cloudPlane = new THREE.PlaneGeometry(5, 3, 3, 3);
@@ -101,18 +111,26 @@ const cloudMaterial = new THREE.MeshBasicMaterial({
 });
 const cloudMesh = new THREE.Mesh(cloudPlane, cloudMaterial);
 const cloudMesh1 = new THREE.Mesh(cloudPlane, cloudMaterial);
-cloudMesh1.position.y = -0.5;
+
+cloudMesh.position.x = 2;
 cloudMesh.position.y = -0.5;
 cloudMesh.position.z = 1.5;
-cloudMesh1.position.z = 2;
-cloudMesh.position.x = 2;
 cloudMesh1.position.x = -2;
+cloudMesh1.position.y = -0.5;
+cloudMesh1.position.z = 2;
+
+cpositions.x = cloudMesh.position.x;
+cpositions.y = cloudMesh.position.y;
+cpositions.z = cloudMesh.position.z;
+cpositions1.x = cloudMesh1.position.x;
+cpositions1.y = cloudMesh1.position.y;
+cpositions1.z = cloudMesh1.position.z;
 scene.add(cloudMesh);
 scene.add(cloudMesh1);
 
 // Geometry
 const particlesGeometry = new THREE.BufferGeometry();
-const count = 1000;
+const count = 1500;
 
 const positions = new Float32Array(count * 3); // Multiply by 3 because each position is composed of 3 values (x, y, z)
 
@@ -154,8 +172,15 @@ const sizes = {
   height: window.innerHeight,
 };
 window.addEventListener("mousemove", (event) => {
-  moonMesh.rotation.x = rotations.x;
-  moonMesh.rotation.y = rotations.y;
+  // moonMesh.rotation.x = rotations.x;
+  // moonMesh.rotation.y = rotations.y;
+
+  // cloudMesh.position.x=cpositions.x
+  // cloudMesh.position.y=cpositions.y
+  // cloudMesh.position.z= cpositions.z
+  // cloudMesh1.position.x=cpositions1.x
+  // cloudMesh1.position.y=cpositions1.y
+  // cloudMesh1.position.z=cpositions1.z
   cursor.x = event.clientX / sizes.width - 0.5;
   cursor.y = event.clientY / sizes.height - 0.5;
 });
@@ -186,7 +211,7 @@ const camera = new THREE.PerspectiveCamera(
   75,
   sizes.width / sizes.height,
   0.1,
-  100
+  1000
 );
 camera.position.set(0, 0, 4);
 scene.add(camera);
@@ -245,7 +270,10 @@ const tick = () => {
   previousTime = elapsedTime;
   particles.position.x = parallaxX * 0.1;
   particles.position.y = parallaxY * 0.1;
-
+  cloudMesh.position.x = cpositions.x + parallaxX * 0.1;
+  cloudMesh1.position.x = cpositions1.x + parallaxX * 0.1;
+  cloudMesh.position.y = cpositions.y + parallaxY * 0.1;
+  cloudMesh1.position.y = cpositions1.y + parallaxY * 0.1;
   moonMesh.rotation.x = rotations.x + parallaxY * 0.3;
   moonMesh.rotation.y = rotations.y + parallaxX * 0.3;
 

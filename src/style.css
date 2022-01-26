@@ -23,18 +23,18 @@ body {
 }
 .section2 {
   display: flex;
-  align-items: flex-end;
-  background: linear-gradient(#21313c, #4f3e5b);
+  align-items: flex-start;
+  background: black;
 }
 .section3 {
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(#21313c, #4f3e5b);
+  background: black;
 }
 .section4 {
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(#21313c, #4f3e5b);
+  background: black;
 }
 section {
   position: relative;
@@ -58,7 +58,8 @@ section {
   display: flex;
   width: 100vw;
   height: 100vh;
-  text-align: left;
+  text-align: center;
+  vertical-align: middle;
   position: absolute;
   z-index: 3;
   color: #f0ece9;
@@ -66,14 +67,13 @@ section {
   font-family: "Naruto";
 }
 .lokesh {
-  padding: 100px;
-  width: 50vw;
+  width: 100vw;
 }
-.reddy {
+/* .reddy {
   padding: 100px;
   text-align: right;
   width: 50vw;
-}
+} */
 .webgl1 {
   z-index: 0;
 }
