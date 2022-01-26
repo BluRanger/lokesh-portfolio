@@ -55,6 +55,8 @@ section {
   z-index: 2;
 }
 .layer3 {
+  position: relative;
+  height: 150px;
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -67,6 +69,15 @@ section {
   font-family: "Naruto";
 }
 .lokesh {
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  margin: 0;
   width: 100vw;
 }
 /* .reddy {
