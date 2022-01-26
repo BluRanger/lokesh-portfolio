@@ -86,14 +86,18 @@ section {
 .lokesh {
   position: absolute;
 
-  top: 50%;
+  top: 65%;
 
-  left: 50%;
+  left: 51%;
 
   transform: translate(-50%, -50%);
 
   margin: 0;
   width: 100vw;
+}
+.fullstack {
+  height: 50%;
+  width: 80%;
 }
 /* .reddy {
   padding: 100px;
