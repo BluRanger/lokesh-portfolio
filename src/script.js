@@ -1,6 +1,6 @@
 import "./style.css";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as Pageable from "pageable";
 // import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 
@@ -217,9 +217,9 @@ camera.position.set(0, 0, 4);
 scene.add(camera);
 scene1.add(camera);
 // Controls
-const controls = new OrbitControls(camera, canvas);
-controls.target.set(0, 0.75, 0);
-controls.enableDamping = true;
+// const controls = new OrbitControls(camera, canvas);
+// controls.target.set(0, 0.75, 0);
+// controls.enableDamping = true;
 
 /**
  * Renderer
@@ -280,7 +280,7 @@ const tick = () => {
   // Model animation
 
   // Update controls
-  controls.update();
+  // controls.update();
 
   //prevent canvas from being erased with next .render call
 
