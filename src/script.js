@@ -223,9 +223,6 @@ var handleOrientationEvent = function (
 ) {
   cursor.y = frontToBack * 0.03;
   cursor.x = leftToRight * 0.03;
-  console.log(frontToBack);
-  console.log(leftToRight);
-  console.log(rotateDegrees);
 };
 
 window.addEventListener("resize", () => {
