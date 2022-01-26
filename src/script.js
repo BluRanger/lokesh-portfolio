@@ -90,7 +90,7 @@ cpositions1.z = 0;
 const textureLoader = new THREE.TextureLoader();
 const moonTexture = textureLoader.load("moon.jpg");
 const starTexture = textureLoader.load("star.png");
-const cloudsTexture = textureLoader.load("clouds.png");
+const cloudsTexture = textureLoader.load("cloud2.png");
 const moonGeometry = new THREE.SphereGeometry(1.6, 50, 50);
 const moonMaterial = new THREE.MeshBasicMaterial({
   map: moonTexture,
@@ -104,7 +104,7 @@ moonMesh.position.y = 3.5;
 moonMesh.position.z = -5;
 
 scene.add(moonMesh);
-const cloudPlane = new THREE.PlaneGeometry(5, 3, 3, 3);
+const cloudPlane = new THREE.PlaneGeometry(7, 3, 3, 3);
 const cloudMaterial = new THREE.MeshBasicMaterial({
   map: cloudsTexture,
   transparent: true,
@@ -270,10 +270,10 @@ const tick = () => {
   previousTime = elapsedTime;
   particles.position.x = parallaxX * 0.1;
   particles.position.y = parallaxY * 0.1;
-  cloudMesh.position.x = cpositions.x + parallaxX * 0.1;
-  cloudMesh1.position.x = cpositions1.x + parallaxX * 0.1;
-  cloudMesh.position.y = cpositions.y + parallaxY * 0.1;
-  cloudMesh1.position.y = cpositions1.y + parallaxY * 0.1;
+  cloudMesh.position.x = cpositions.x + parallaxX * 0.08;
+  cloudMesh1.position.x = cpositions1.x + parallaxX * 0.08;
+  // cloudMesh.position.y = cpositions.y + parallaxY * 0.1;
+  // cloudMesh1.position.y = cpositions1.y + parallaxY * 0.1;
   moonMesh.rotation.x = rotations.x + parallaxY * 0.3;
   moonMesh.rotation.y = rotations.y + parallaxX * 0.3;
 
